@@ -90,9 +90,18 @@ importers:
       '@biomejs/biome':
         specifier: ^2.3.8
         version: 2.3.8
+      '@iconify-json/fluent':
+        specifier: ^1.2.35
+        version: 1.2.35
+      '@iconify-json/logos':
+        specifier: ^1.2.10
+        version: 1.2.10
       '@iconify-json/mdi':
         specifier: ^1.2.2
         version: 1.2.3
+      '@iconify-json/simple-icons':
+        specifier: ^1.2.61
+        version: 1.2.61
       '@pagefind/default-ui':
         specifier: ^1.4.0
         version: 1.4.0
@@ -465,8 +474,17 @@ packages:
   '@expressive-code/plugin-text-markers@0.41.3':
     resolution: {integrity: sha512-SN8tkIzDpA0HLAscEYD2IVrfLiid6qEdE9QLlGVSxO1KEw7qYvjpbNBQjUjMr5/jvTJ7ys6zysU2vLPHE0sb2g==}
 
+  '@iconify-json/fluent@1.2.35':
+    resolution: {integrity: sha512-OsbJPrIsEmnlLvgGBSyc6A27C2DvJwyZ+3Jb2NA8GlcixI9J1GEZhOo0MJZoTLf0GBqaSwhejxiMc+OT1f19WA==}
+
+  '@iconify-json/logos@1.2.10':
+    resolution: {integrity: sha512-qxaXKJ6fu8jzTMPQdHtNxlfx6tBQ0jXRbHZIYy5Ilh8Lx9US9FsAdzZWUR8MXV8PnWTKGDFO4ZZee9VwerCyMA==}
+
   '@iconify-json/mdi@1.2.3':
     resolution: {integrity: sha512-O3cLwbDOK7NNDf2ihaQOH5F9JglnulNDFV7WprU2dSoZu3h3cWH//h74uQAB87brHmvFVxIOkuBX2sZSzYhScg==}
+
+  '@iconify-json/simple-icons@1.2.61':
+    resolution: {integrity: sha512-DG6z3VEAxtDEw/SuZssZ/E8EvhjBhFQqxpEo3uckRKiia3LfZHmM4cx4RsaO2qX1Bqo9uadR5c/hYavvUQVuHw==}
 
   '@iconify/tools@4.1.2':
     resolution: {integrity: sha512-q6NzLQYEN9zkDfcyBqD3vItHcZw97w/s++3H3TBxUORr57EfHxj6tOW6fyufDjMq+Vl56WXWaPx1csBPYlI5CA==}
@@ -3624,7 +3642,19 @@ snapshots:
     dependencies:
       '@expressive-code/core': 0.41.3
 
+  '@iconify-json/fluent@1.2.35':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/logos@1.2.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/mdi@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/simple-icons@1.2.61':
     dependencies:
       '@iconify/types': 2.0.0
 
