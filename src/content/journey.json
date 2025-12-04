@@ -1,0 +1,42 @@
+[
+    {
+		"type": "education",
+		"year": "2025",
+		"title": "Master of Science in Data Science",
+		"subtitle": "University of Colorado Boulder",
+		"description": "<Insert description here>",
+		"bullets": []
+    },
+    {
+		"type": "job",
+		"year": "2023",
+		"title": "AI Engineer",
+		"subtitle": "Agile Extreme Lab Limited",
+		"description": "<Insert description here>",
+		"bullets": []
+    },
+    {
+		"type": "education",
+		"year": "2021",
+		"title": "Full-time Data Science Immersive",
+		"subtitle": "Xccelerate",
+		"description": "<Insert description here>",
+		"bullets": []
+    },
+    {
+		"type": "job",
+		"year": "2020",
+		"title": "Senior Auditor",
+		"subtitle": "Ernst & Young",
+		"description": "<Insert description here>",
+		"bullets": []
+    },
+    {
+		"type": "education",
+		"year": "2016",
+		"title": "BBA in Professional Accoutancy",
+		"subtitle": "The Chinese University of Hong Kong",
+		"description": "<Insert description here>",
+		"bullets": []
+    }
+]

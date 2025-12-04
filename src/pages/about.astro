@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
 import { Icon } from "astro-icon/components";
+import journeyData from "../content/journey.json";
 
 const fontSize = "text-base";
 
@@ -11,34 +12,6 @@ const meta = {
 
 const myStory = "I had never imagined to become a Software Engineer when I was young."
 
-const journeyData = [
-	{
-		type: "education",
-		year: "2025",
-		title: "Master of Science in Data Science (GPA 3.7/4.0)",
-		subtitle: "University of Colorado Boulder",
-		description:
-			"<Insert description here>",
-		bullets: [],
-	},
-	{
-		type: "job",
-		year: "2023",
-		title: "AI Engineer",
-		subtitle: "Agile Extreme Lab Limited",
-		description: "<Insert description here>",
-		bullets: [],
-	},
-	{
-		type: "education",
-		year: "2022",
-		title: "Full-time Data Science Immersive",
-		subtitle: "Xccelerate",
-		description:
-			"<Insert description here>",
-		bullets: [],
-	},
-];
 ---
 
 <PageLayout meta={meta}>
@@ -85,12 +58,25 @@ const journeyData = [
 
 		<!-- Optional: Interests or Call-to-Action -->
 		<section>
-			<h2 class="mb-4 text-2xl font-semibold">Beyond Work</h2>
-			<p>
-				When I'm not coding, I enjoy [hobbies, e.g., hiking, reading tech blogs, or contributing to
-				open-source]. Feel free to <a href="/contact" class="cactus-link">reach out</a> to discuss opportunities
-				or collaborations!
-			</p>
+			<h2 class="mb-4 text-2xl font-semibold">Hobbies</h2>
+				<div class="flex flex-wrap gap-2">
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="mdi:music-clef-treble" class="mr-2 h-6 w-6" />
+							Listening music
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="fluent:calligraphy-pen-20-filled" class="mr-2 h-6 w-6" />
+							Caligraphy
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="mdi:coffee" class="mr-2 h-6 w-6" />
+							Coffee Brewing
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="simple-icons:steam" class="mr-2 h-6 w-6" />
+							Gaming
+						</span>
+				</div>						
 		</section>
 	</div>
 </PageLayout>
