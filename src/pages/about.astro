@@ -1,36 +1,110 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+
+const fontSize = "text-base"; // Configurable font size for the about page
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
+	description: "My Personal Info",
 	title: "About",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
+	<h1 class="title mb-12">About Me</h1>
 	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
-		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
+		<!-- Introduction -->
+		<section class="mb-8">
+			<p class="leading-relaxed">
+				Hi, I'm [Your Name], a passionate [your profession, e.g., software developer] based in
+				[location]. With [X years] of experience in [field, e.g., web development], I specialize in
+				building efficient, user-centric solutions. I'm driven by [personal motivation, e.g.,
+				solving complex problems and collaborating on innovative projects], and I'm always eager to
+				learn and adapt in fast-paced environments.
+			</p>
+		</section>
+
+		<!-- Skills -->
+		<section class="mb-8">
+			<h2 class="mb-4 text-2xl font-semibold">Skills</h2>
+			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<div>
+					<h3 class="mb-2 text-lg font-medium">Technical Skills</h3>
+					<ul class="list-inside list-disc space-y-1">
+						<li>Programming Languages: JavaScript, TypeScript, Python</li>
+						<li>Frameworks & Libraries: React, Astro, Node.js</li>
+						<li>Tools & Technologies: Git, Docker, AWS</li>
+					</ul>
+				</div>
+				<div>
+					<h3 class="mb-2 text-lg font-medium">Soft Skills</h3>
+					<ul class="list-inside list-disc space-y-1">
+						<li>Problem-Solving & Analytical Thinking</li>
+						<li>Team Collaboration & Communication</li>
+						<li>Agile Methodologies & Project Management</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Timeline: My Journey -->
+		<section class="mb-8">
+			<h2 class="mb-6 text-2xl font-semibold">My Journey</h2>
+			<div class="space-y-6">
+				<!-- Work Experience -->
+				<div class="flex items-center">
+					<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
+						<Icon name="mdi:briefcase" class="text-cactus h-7 w-7" />
+						<span class={`text-cactus ${fontSize} font-semibold`}>2022</span>
+					</div>
+					<div class="border-cactus border-l-4 pl-4">
+						<h3 class="text-lg font-medium">[Job Title, e.g., Software Engineer]</h3>
+						<p class="text-sm text-gray-600 dark:text-gray-400">
+							[Company Name], [Location] | [Start Date] - [End Date or Present]
+						</p>
+						<ul class={`mt-2 list-inside list-disc space-y-1 ${fontSize}`}>
+							<li>
+								Developed [specific project/feature], resulting in [quantifiable impact, e.g., 20%
+								performance improvement].
+							</li>
+							<li>Collaborated with cross-functional teams to [key responsibility].</li>
+							<li>Technologies used: [e.g., React, Node.js, MongoDB].</li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- Education -->
+				<div class="flex items-center">
+					<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
+						<Icon name="mdi:school-outline" class="text-cactus h-7 w-7" />
+						<span class={`text-cactus ${fontSize} font-semibold`}>2016</span>
+					</div>
+					<div class="border-cactus border-l-4 pl-4">
+						<h3 class="text-lg font-medium">
+							[Degree, e.g., Bachelor of Science in Computer Science]
+						</h3>
+						<p class="text-sm text-gray-600 dark:text-gray-400">
+							[Institution Name], [Location] | [Graduation Year]
+						</p>
+						<p class={`mt-2 ${fontSize}`}>
+							Relevant coursework: [e.g., Data Structures, Algorithms, Web Development]. [Any honors
+							or GPA if applicable].
+						</p>
+					</div>
+				</div>
+
+				<!-- Add more items as needed -->
+			</div>
+		</section>
+
+		<!-- Optional: Interests or Call-to-Action -->
+		<section>
+			<h2 class="mb-4 text-2xl font-semibold">Beyond Work</h2>
+			<p>
+				When I'm not coding, I enjoy [hobbies, e.g., hiking, reading tech blogs, or contributing to
+				open-source]. Feel free to <a href="/contact" class="cactus-link">reach out</a> to discuss opportunities
+				or collaborations!
+			</p>
+		</section>
 	</div>
 </PageLayout>
