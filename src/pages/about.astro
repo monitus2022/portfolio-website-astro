@@ -1,36 +1,82 @@
 ---
 import PageLayout from "@/layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import journeyData from "../content/journey.json";
+
+const fontSize = "text-base";
 
 const meta = {
-	description: "I'm a starter theme for Astro.build",
+	description: "My Personal Info",
 	title: "About",
 };
+
+const myStory = "I had never imagined to become a Software Engineer when I was young."
+
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">About</h1>
+	<h1 class="title mb-12">About Me</h1>
 	<div class="prose prose-sm prose-cactus max-w-none">
-		<p>
-			Hi, I’m a starter Astro. I’m particularly great for getting you started with your own blogging
-			website.
-		</p>
-		<p>Here are my some of my awesome built in features:</p>
-		<ul class="list-inside list-disc" role="list">
-			<li>I'm ultra fast as I'm a static site</li>
-			<li>I'm fully responsive</li>
-			<li>I come with a light and dark mode</li>
-			<li>I'm easy to customise and add additional content</li>
-			<li>I have Tailwind CSS styling</li>
-			<li>Shiki code syntax highlighting</li>
-			<li>Satori for auto generating OG images for blog posts</li>
-		</ul>
-		<p>
-			Clone or fork my <a
-				class="cactus-link inline-block"
-				href="https://github.com/chrismwilliams/astro-cactus"
-				rel="noreferrer"
-				target="_blank">repo</a
-			> if you like me!
-		</p>
+		<!-- Introduction -->
+		<section class="mb-8">
+			<p class="leading-relaxed">
+				{myStory}
+			</p>
+		</section>
+
+		<!-- Timeline: My Journey -->
+		<section class="mb-8">
+			<h2 class="mb-6 text-2xl font-semibold">My Journey</h2>
+			<div class="space-y-6">
+				{
+					journeyData.map((item) => (
+						<div class="flex items-center">
+							<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
+								<Icon
+									name={item.type === "job" ? "mdi:briefcase" : "mdi:school-outline"}
+									class="text-cactus h-7 w-7"
+								/>
+								<span class={`text-cactus ${fontSize} font-semibold`}>{item.year}</span>
+							</div>
+							<div class="border-cactus border-l-4 pl-4">
+								<h3 class="text-lg font-medium">{item.title}</h3>
+								<p class="text-sm text-gray-600 dark:text-gray-400">{item.subtitle}</p>
+								{item.description && <p class={`mt-2 ${fontSize}`}>{item.description}</p>}
+								{item.bullets.length > 0 && (
+									<ul class={`mt-2 list-inside list-disc space-y-1 ${fontSize}`}>
+										{item.bullets.map((bullet) => (
+											<li>{bullet}</li>
+										))}
+									</ul>
+								)}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Optional: Interests or Call-to-Action -->
+		<section>
+			<h2 class="mb-4 text-2xl font-semibold">Hobbies</h2>
+				<div class="flex flex-wrap gap-2">
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="mdi:music-clef-treble" class="mr-2 h-6 w-6" />
+							Listening music
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="fluent:calligraphy-pen-20-filled" class="mr-2 h-6 w-6" />
+							Caligraphy
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="mdi:coffee" class="mr-2 h-6 w-6" />
+							Coffee Brewing
+						</span>
+						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+							<Icon name="simple-icons:steam" class="mr-2 h-6 w-6" />
+							Gaming
+						</span>
+				</div>						
+		</section>
 	</div>
 </PageLayout>
