@@ -1,0 +1,50 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import { Icon } from "astro-icon/components";
+import skillsData from "../content/skills.json"
+
+const meta = {
+	description: "Skills and Projects",
+	title: "Skills and Projects",
+};
+
+
+---
+
+<PageLayout meta={meta}>
+	<h1 class="title mb-12">Skills</h1>
+	<div class="prose prose-sm prose-cactus max-w-none">
+		<!-- Skills -->
+		<section class="mb-8">
+			<div class="space-y-6">
+				{
+					skillsData.map((category) => (
+						<div>
+							<h3 class="mb-3 text-lg font-medium">{category.title}</h3>
+							<div class="flex flex-wrap gap-2">
+								{category.skills.map((skill) => (
+									<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+										<Icon name={skill.icon} class="mr-2 h-6 w-6" />
+										{skill.name}
+									</span>
+								))}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+	</div>
+
+	<br />
+	
+	<h1 class="title mb-12">Projects</h1>
+	<div class="prose prose-sm prose-cactus max-w-none">
+		<!-- Projects -->
+		<section class="mb-8">
+			<div class="space-y-6">
+				project 123
+			</div>
+		</section>
+	</div>	
+</PageLayout>
