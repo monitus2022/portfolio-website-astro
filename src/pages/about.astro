@@ -2,91 +2,40 @@
 import PageLayout from "@/layouts/Base.astro";
 import { Icon } from "astro-icon/components";
 
-const fontSize = "text-base"; // Configurable font size for the about page
+const fontSize = "text-base";
 
 const meta = {
 	description: "My Personal Info",
 	title: "About",
 };
 
-const skillsData = [
-	{
-		title: "AI & Machine Learning",
-		skills: [
-			{ name: "LangChain", icon: "simple-icons:langchain" },
-			{ name: "HuggingFace", icon: "simple-icons:huggingface" },
-			{ name: "OpenRouter", icon: "simple-icons:openrouter" },
-			{ name: "Ollama", icon: "simple-icons:ollama" },
-			{ name: "MLflow", icon: "simple-icons:mlflow" },
-			{ name: "PyTorch", icon: "simple-icons:pytorch" },
-			{ name: "TensorFlow", icon: "simple-icons:tensorflow" },
-			{ name: "scikit-learn", icon: "simple-icons:scikitlearn" },
-		],
-	},
-	{
-		title: "Data Analytics",
-		skills: [
-			{ name: "Pandas", icon: "simple-icons:pandas" },
-			{ name: "Plotly", icon: "simple-icons:plotly" },
-			{ name: "RStudio", icon: "simple-icons:rstudioide" },
-			{ name: "Power BI", icon: "simple-icons:powerbi" },
-		],
-	},
-	{
-		title: "Backend Development",
-		skills: [
-			{ name: "FastAPI", icon: "simple-icons:fastapi" },
-			{ name: "Pydantic", icon: "simple-icons:pydantic" },
-			{ name: "PostgresSQL", icon: "simple-icons:postgresql" },
-			{ name: "Redis", icon: "simple-icons:redis" },
-		],
-	},
-	{
-		title: "Frontend Development",
-		skills: [
-			{ name: "Astro", icon: "simple-icons:astro" },
-			{ name: "React", icon: "simple-icons:react" },
-			{ name: "Ant Design", icon: "simple-icons:antdesign" },
-			{ name: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
-			{ name: "Streamlit", icon: "simple-icons:streamlit" },
-			{ name: "Gradio", icon: "simple-icons:gradio" },
-		],
-	},
-	{
-		title: "DevOps & Tools",
-		skills: [
-			{ name: "Github Actions", icon: "simple-icons:githubactions" },
-			{ name: "Docker", icon: "simple-icons:docker" },
-			{ name: "Kubernetes", icon: "simple-icons:kubernetes" },
-			{ name: "Terraform", icon: "simple-icons:terraform" },
-			{ name: "AWS", icon: "simple-icons:amazonwebservices" },
-			{ name: "Azure", icon: "simple-icons:microsoftazure" },
-			{ name: "AliCloud", icon: "simple-icons:alibabacloud" },
-			{ name: "Cloudflare", icon: "simple-icons:cloudflare" },
-		],
-	},
-];
+const myStory = "I had never imagined to become a Software Engineer when I was young."
 
 const journeyData = [
 	{
+		type: "education",
+		year: "2025",
+		title: "Master of Science in Data Science (GPA 3.7/4.0)",
+		subtitle: "University of Colorado Boulder",
+		description:
+			"<Insert description here>",
+		bullets: [],
+	},
+	{
 		type: "job",
-		year: "2022",
-		title: "[Job Title, e.g., Software Engineer]",
-		subtitle: "[Company Name], [Location] | [Start Date] - [End Date or Present]",
-		description: "",
-		bullets: [
-			"Developed [specific project/feature], resulting in [quantifiable impact, e.g., 20% performance improvement].",
-			"Collaborated with cross-functional teams to [key responsibility].",
-			"Technologies used: [e.g., React, Node.js, MongoDB].",
-		],
+		year: "2023",
+		title: "AI Engineer",
+		subtitle: "Agile Extreme Lab Limited",
+		description: "<Insert description here>",
+		bullets: [],
 	},
 	{
 		type: "education",
-		year: "2016",
-		title: "[Degree, e.g., Bachelor of Science in Computer Science]",
-		subtitle: "[Institution Name], [Location] | [Graduation Year]",
+		year: "2022",
+		title: "Full-time Data Science Immersive",
+		subtitle: "Xccelerate",
 		description:
-			"Relevant coursework: [e.g., Data Structures, Algorithms, Web Development]. [Any honors or GPA if applicable].",
+			"<Insert description here>",
 		bullets: [],
 	},
 ];
@@ -98,34 +47,8 @@ const journeyData = [
 		<!-- Introduction -->
 		<section class="mb-8">
 			<p class="leading-relaxed">
-				Hi, I'm [Your Name], a passionate [your profession, e.g., software developer] based in
-				[location]. With [X years] of experience in [field, e.g., web development], I specialize in
-				building efficient, user-centric solutions. I'm driven by [personal motivation, e.g.,
-				solving complex problems and collaborating on innovative projects], and I'm always eager to
-				learn and adapt in fast-paced environments.
+				{myStory}
 			</p>
-		</section>
-
-		<!-- Skills -->
-		<section class="mb-8">
-			<h2 class="mb-4 text-2xl font-semibold">Skills</h2>
-			<div class="space-y-6">
-				{
-					skillsData.map((category) => (
-						<div>
-							<h3 class="mb-3 text-lg font-medium">{category.title}</h3>
-							<div class="flex flex-wrap gap-2">
-								{category.skills.map((skill) => (
-									<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-										<Icon name={skill.icon} class="mr-2 h-6 w-6" />
-										{skill.name}
-									</span>
-								))}
-							</div>
-						</div>
-					))
-				}
-			</div>
 		</section>
 
 		<!-- Timeline: My Journey -->
