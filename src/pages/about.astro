@@ -8,6 +8,88 @@ const meta = {
 	description: "My Personal Info",
 	title: "About",
 };
+
+const skillsData = [
+	{
+		title: "AI & Machine Learning",
+		skills: [
+			{ name: "LangChain", icon: "simple-icons:langchain" },
+			{ name: "HuggingFace", icon: "simple-icons:huggingface" },
+			{ name: "OpenRouter", icon: "simple-icons:openrouter" },
+			{ name: "Ollama", icon: "simple-icons:ollama" },
+			{ name: "MLflow", icon: "simple-icons:mlflow" },
+			{ name: "PyTorch", icon: "simple-icons:pytorch" },
+			{ name: "TensorFlow", icon: "simple-icons:tensorflow" },
+			{ name: "scikit-learn", icon: "simple-icons:scikitlearn" },
+		],
+	},
+	{
+		title: "Data Analytics",
+		skills: [
+			{ name: "Pandas", icon: "simple-icons:pandas" },
+			{ name: "Plotly", icon: "simple-icons:plotly" },
+			{ name: "RStudio", icon: "simple-icons:rstudioide" },
+			{ name: "Power BI", icon: "simple-icons:powerbi" },
+		],
+	},
+	{
+		title: "Backend Development",
+		skills: [
+			{ name: "FastAPI", icon: "simple-icons:fastapi" },
+			{ name: "Pydantic", icon: "simple-icons:pydantic" },
+			{ name: "PostgresSQL", icon: "simple-icons:postgresql" },
+			{ name: "Redis", icon: "simple-icons:redis" },
+		],
+	},
+	{
+		title: "Frontend Development",
+		skills: [
+			{ name: "Astro", icon: "simple-icons:astro" },
+			{ name: "React", icon: "simple-icons:react" },
+			{ name: "Ant Design", icon: "simple-icons:antdesign" },
+			{ name: "Tailwind CSS", icon: "simple-icons:tailwindcss" },
+			{ name: "Streamlit", icon: "simple-icons:streamlit" },
+			{ name: "Gradio", icon: "simple-icons:gradio" },
+		],
+	},
+	{
+		title: "DevOps & Tools",
+		skills: [
+			{ name: "Github Actions", icon: "simple-icons:githubactions" },
+			{ name: "Docker", icon: "simple-icons:docker" },
+			{ name: "Kubernetes", icon: "simple-icons:kubernetes" },
+			{ name: "Terraform", icon: "simple-icons:terraform" },
+			{ name: "AWS", icon: "simple-icons:amazonwebservices" },
+			{ name: "Azure", icon: "simple-icons:microsoftazure" },
+			{ name: "AliCloud", icon: "simple-icons:alibabacloud" },
+			{ name: "Cloudflare", icon: "simple-icons:cloudflare" },
+		],
+	},
+];
+
+const journeyData = [
+	{
+		type: "job",
+		year: "2022",
+		title: "[Job Title, e.g., Software Engineer]",
+		subtitle: "[Company Name], [Location] | [Start Date] - [End Date or Present]",
+		description: "",
+		bullets: [
+			"Developed [specific project/feature], resulting in [quantifiable impact, e.g., 20% performance improvement].",
+			"Collaborated with cross-functional teams to [key responsibility].",
+			"Technologies used: [e.g., React, Node.js, MongoDB].",
+		],
+	},
+	{
+		type: "education",
+		year: "2016",
+		title: "[Degree, e.g., Bachelor of Science in Computer Science]",
+		subtitle: "[Institution Name], [Location] | [Graduation Year]",
+		description:
+			"Relevant coursework: [e.g., Data Structures, Algorithms, Web Development]. [Any honors or GPA if applicable].",
+		bullets: [],
+	},
+];
 ---
 
 <PageLayout meta={meta}>
@@ -27,23 +109,22 @@ const meta = {
 		<!-- Skills -->
 		<section class="mb-8">
 			<h2 class="mb-4 text-2xl font-semibold">Skills</h2>
-			<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-				<div>
-					<h3 class="mb-2 text-lg font-medium">Technical Skills</h3>
-					<ul class="list-inside list-disc space-y-1">
-						<li>Programming Languages: JavaScript, TypeScript, Python</li>
-						<li>Frameworks & Libraries: React, Astro, Node.js</li>
-						<li>Tools & Technologies: Git, Docker, AWS</li>
-					</ul>
-				</div>
-				<div>
-					<h3 class="mb-2 text-lg font-medium">Soft Skills</h3>
-					<ul class="list-inside list-disc space-y-1">
-						<li>Problem-Solving & Analytical Thinking</li>
-						<li>Team Collaboration & Communication</li>
-						<li>Agile Methodologies & Project Management</li>
-					</ul>
-				</div>
+			<div class="space-y-6">
+				{
+					skillsData.map((category) => (
+						<div>
+							<h3 class="mb-3 text-lg font-medium">{category.title}</h3>
+							<div class="flex flex-wrap gap-2">
+								{category.skills.map((skill) => (
+									<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+										<Icon name={skill.icon} class="mr-2 h-6 w-6" />
+										{skill.name}
+									</span>
+								))}
+							</div>
+						</div>
+					))
+				}
 			</div>
 		</section>
 
@@ -51,49 +132,31 @@ const meta = {
 		<section class="mb-8">
 			<h2 class="mb-6 text-2xl font-semibold">My Journey</h2>
 			<div class="space-y-6">
-				<!-- Work Experience -->
-				<div class="flex items-center">
-					<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
-						<Icon name="mdi:briefcase" class="text-cactus h-7 w-7" />
-						<span class={`text-cactus ${fontSize} font-semibold`}>2022</span>
-					</div>
-					<div class="border-cactus border-l-4 pl-4">
-						<h3 class="text-lg font-medium">[Job Title, e.g., Software Engineer]</h3>
-						<p class="text-sm text-gray-600 dark:text-gray-400">
-							[Company Name], [Location] | [Start Date] - [End Date or Present]
-						</p>
-						<ul class={`mt-2 list-inside list-disc space-y-1 ${fontSize}`}>
-							<li>
-								Developed [specific project/feature], resulting in [quantifiable impact, e.g., 20%
-								performance improvement].
-							</li>
-							<li>Collaborated with cross-functional teams to [key responsibility].</li>
-							<li>Technologies used: [e.g., React, Node.js, MongoDB].</li>
-						</ul>
-					</div>
-				</div>
-
-				<!-- Education -->
-				<div class="flex items-center">
-					<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
-						<Icon name="mdi:school-outline" class="text-cactus h-7 w-7" />
-						<span class={`text-cactus ${fontSize} font-semibold`}>2016</span>
-					</div>
-					<div class="border-cactus border-l-4 pl-4">
-						<h3 class="text-lg font-medium">
-							[Degree, e.g., Bachelor of Science in Computer Science]
-						</h3>
-						<p class="text-sm text-gray-600 dark:text-gray-400">
-							[Institution Name], [Location] | [Graduation Year]
-						</p>
-						<p class={`mt-2 ${fontSize}`}>
-							Relevant coursework: [e.g., Data Structures, Algorithms, Web Development]. [Any honors
-							or GPA if applicable].
-						</p>
-					</div>
-				</div>
-
-				<!-- Add more items as needed -->
+				{
+					journeyData.map((item) => (
+						<div class="flex items-center">
+							<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
+								<Icon
+									name={item.type === "job" ? "mdi:briefcase" : "mdi:school-outline"}
+									class="text-cactus h-7 w-7"
+								/>
+								<span class={`text-cactus ${fontSize} font-semibold`}>{item.year}</span>
+							</div>
+							<div class="border-cactus border-l-4 pl-4">
+								<h3 class="text-lg font-medium">{item.title}</h3>
+								<p class="text-sm text-gray-600 dark:text-gray-400">{item.subtitle}</p>
+								{item.description && <p class={`mt-2 ${fontSize}`}>{item.description}</p>}
+								{item.bullets.length > 0 && (
+									<ul class={`mt-2 list-inside list-disc space-y-1 ${fontSize}`}>
+										{item.bullets.map((bullet) => (
+											<li>{bullet}</li>
+										))}
+									</ul>
+								)}
+							</div>
+						</div>
+					))
+				}
 			</div>
 		</section>
 
