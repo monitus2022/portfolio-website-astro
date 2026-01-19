@@ -1,10 +1,6 @@
 import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders";
 
-function removeDupsAndLowerCase(array: string[]) {
-	return [...new Set(array.map((str) => str.toLowerCase()))];
-}
-
 const titleSchema = z.string().max(60);
 
 const baseSchema = z.object({
