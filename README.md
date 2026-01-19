@@ -188,3 +188,11 @@ This theme was inspired by [Hexo Theme Cactus](https://github.com/probberechts/h
 ## License
 
 MIT
+
+## Additional Credits
+
+Meme images used:
+- Accounting: https://imgur.com/gallery/struggles-of-number-cruncher-chapter-2-M6jkO
+- Machine Learning: https://www.kaggle.com/discussions/general/123154#705356
+- MLOps: https://www.reddit.com/r/ProgrammerHumor/comments/1p204nx/actuallycompleteversion
+- Master: https://img.devrant.com/devrant/rant/r_1922673_gic3B.jpg

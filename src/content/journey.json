@@ -1,42 +1,63 @@
 [
     {
-		"type": "education",
-		"year": "2025",
-		"title": "Master of Science in Data Science",
-		"subtitle": "University of Colorado Boulder",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Foundations in Structure",
+        "description": "Starting with a BBA in since I love dealing with numbers and logic puzzles, accounting was a natural fit. Not only did it learn my analytical skills, but it also taught me business fundamentals and real-world applications of financial data.",
+        "skills": ["Data analysis fundamentals", "Data presentation", "Financial compliance"],
+        "meme": "/memes/accounting_1.jpeg",
+        "hint": "When you realise accounting is closer to data analytics than pure bookkeeping",
+        "milestones": [
+            {
+                "title": "BBA in Professional Accountancy",
+                "subtitle": "The Chinese University of Hong Kong",
+                "year": "2012-2016"
+            },
+            {
+                "title": "Auditor ➡️ Senior Auditor",
+                "subtitle": "Ernst & Young",
+                "year": "2016-2020"
+            }
+        ]
     },
     {
-		"type": "job",
-		"year": "2023",
-		"title": "AI Engineer",
-		"subtitle": "Agile Extreme Lab Limited",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "The Pivot",
+        "description": "Why the change? Purely fulfilling compliance and budgeting felt limiting. I craved more creativity and problem-solving. Data Science offered the perfect blend of analytical rigor, coding, and real-world impact.",
+        "skills": ["Python programming", "Machine learning basics", "Data visualization", "Statistical analysis"],
+        "meme": "/memes/machine_learning_1.jpeg",
+        "hint": "When you realise 'Data Science' is not black magic, we need to learn a lot of math and coding",
+        "milestones": [
+            {
+                "title": "Full-time Data Science Immersive",
+                "subtitle": "Xccelerate",
+                "year": "2021"
+            }
+        ]
     },
     {
-		"type": "education",
-		"year": "2021",
-		"title": "Full-time Data Science Immersive",
-		"subtitle": "Xccelerate",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Innovation as AI Engineer",
+        "description": "My first tech company provides me well-rounded training and experience in ML model development and deployment. As a start-up company, I'm heavily involved in designing data pipeline and MLOps architecture. Besides, I also get to work with cutting edge AI and LLM technologies to build innovative solutions for real-world problems.",
+        "skills": ["AI model development", "MLOps", "Cloud computing", "LLM Agents", "Agile Development"],
+        "meme": "/memes/mlops_1.png",
+        "hint": "When you realise every pieces of components need to work together to make an AI product function smoothly",
+        "milestones": [
+            {
+                "title": "Full-stack Software Engineer ➡️ AI Engineer",
+                "subtitle": "Agile Extreme Lab Limited",
+                "year": "2021-2023"
+            }
+        ]
     },
     {
-		"type": "job",
-		"year": "2020",
-		"title": "Senior Auditor",
-		"subtitle": "Ernst & Young",
-		"description": "<Insert description here>",
-		"bullets": []
-    },
-    {
-		"type": "education",
-		"year": "2016",
-		"title": "BBA in Professional Accoutancy",
-		"subtitle": "The Chinese University of Hong Kong",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Pursuing Advanced Studies",
+        "description": "During my work, I realised I need to deepen my knowledge in statistics and computer science to build more robust AI applications. Therefore, I decided to pursue a Master's degree in Data Science to solidify my foundation and open up more advanced opportunities.",
+        "skills": ["Data Structure Algorithms", "Big data technologies", "Data Mining Techniques", "Project Management"],
+        "meme": "/memes/master_1.jpg",
+        "hint": "When you reaslise that at the end, a solid foundation is key to long-term success",
+        "milestones": [
+            {
+                "title": "Master of Science in Data Science",
+                "subtitle": "University of Colorado Boulder",
+                "year": "2024-2025"
+            }
+        ]
     }
 ]
