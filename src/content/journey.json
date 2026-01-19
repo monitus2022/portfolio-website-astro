@@ -1,42 +1,63 @@
 [
     {
-		"type": "education",
-		"year": "2025",
-		"title": "Master of Science in Data Science",
-		"subtitle": "University of Colorado Boulder",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Foundations in Structure",
+        "description": "Starting with a BBA in Professional Accountancy, I developed a keen eye for logic and precision—skills that later fueled my data science passion. As a Senior Auditor at EY, I applied logic to ensure financial integrity, but the repetitive nature made me yearn for innovation. Data was everywhere, yet untapped for bigger problems.",
+        "skills": ["Data analysis fundamentals", "Logical reasoning", "Financial compliance", "Attention to detail"],
+        "meme": "/memes/accounting_1.jpeg",
+        "hint": "When you realise accounting is just data in disguise",
+        "milestones": [
+            {
+                "title": "BBA in Professional Accountancy",
+                "subtitle": "The Chinese University of Hong Kong",
+                "year": "2012-2016"
+            },
+            {
+                "title": "Senior Auditor",
+                "subtitle": "Ernst & Young",
+                "year": "2016-2020"
+            }
+        ]
     },
     {
-		"type": "job",
-		"year": "2023",
-		"title": "AI Engineer",
-		"subtitle": "Agile Extreme Lab Limited",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "The Pivot",
+        "description": "Why the change? Auditing's structured world felt limiting—I wanted to harness data for real impact, like predicting trends or automating decisions. Logic became my tool for building, not just checking. The Xccelerate bootcamp was my leap into data science, blending my analytical background with coding creativity.",
+        "skills": ["Python programming", "Machine learning basics", "Data visualization", "Statistical analysis"],
+        "meme": "/memes/machine_learning_1.jpeg",
+        "hint": "When you realise 'Data Science' is not black magic, we need to learn a lot of math and coding",
+        "milestones": [
+            {
+                "title": "Full-time Data Science Immersive",
+                "subtitle": "Xccelerate",
+                "year": "2021"
+            }
+        ]
     },
     {
-		"type": "education",
-		"year": "2021",
-		"title": "Full-time Data Science Immersive",
-		"subtitle": "Xccelerate",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Innovation as AI Engineer",
+        "description": "Now as an AI Engineer, I love how data reveals patterns in chaos, logic solves complex puzzles, and real-life applications like AI-driven insights transform businesses.",
+        "skills": ["AI model development", "Deep learning", "Cloud computing", "Problem-solving with data"],
+        "meme": "/memes/ai_engineer_1.jpeg",
+        "hint": "When your code finally runs and predicts the future",
+        "milestones": [
+            {
+                "title": "AI Engineer",
+                "subtitle": "Agile Extreme Lab Limited",
+                "year": "2021-2023"
+            }
+        ]
     },
     {
-		"type": "job",
-		"year": "2020",
-		"title": "Senior Auditor",
-		"subtitle": "Ernst & Young",
-		"description": "<Insert description here>",
-		"bullets": []
-    },
-    {
-		"type": "education",
-		"year": "2016",
-		"title": "BBA in Professional Accoutancy",
-		"subtitle": "The Chinese University of Hong Kong",
-		"description": "<Insert description here>",
-		"bullets": []
+        "phase": "Pursuing Advanced Studies",
+        "description": "Pursuing an MS in Data Science at CU Boulder deepens my passion for data, logic, and real-life applications.",
+        "skills": ["Advanced statistics", "Big data technologies", "Research methodologies", "Academic writing"],
+        "meme": "/memes/ms_degree_1.jpeg",
+        "hint": "Leveling up the knowledge",
+        "milestones": [
+            {
+                "title": "Master of Science in Data Science",
+                "subtitle": "University of Colorado Boulder",
+                "year": "2024-2025"
+            }
+        ]
     }
 ]

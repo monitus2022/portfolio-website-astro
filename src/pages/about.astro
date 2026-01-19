@@ -10,7 +10,7 @@ const meta = {
 	title: "About",
 };
 
-const myStory = "I had never imagined to become a Software Engineer when I was young."
+const myStory = "My journey from auditing to software engineering wasn't planned—it was a pivot driven by my love for data's hidden stories, logic's elegant solutions, and applying tech to real-world problems."
 
 ---
 
@@ -24,31 +24,43 @@ const myStory = "I had never imagined to become a Software Engineer when I was y
 			</p>
 		</section>
 
-		<!-- Timeline: My Journey -->
+		<!-- Life Journey -->
 		<section class="mb-8">
-			<h2 class="mb-6 text-2xl font-semibold">My Journey</h2>
-			<div class="space-y-6">
+			<h2 class="mb-6 text-2xl font-semibold">Life Journey</h2>
+			<div class="space-y-8">
 				{
-					journeyData.map((item) => (
-						<div class="flex items-center">
-							<div class="flex w-24 flex-shrink-0 flex-col items-center pr-4">
-								<Icon
-									name={item.type === "job" ? "mdi:briefcase" : "mdi:school-outline"}
-									class="text-cactus h-7 w-7"
-								/>
-								<span class={`text-cactus ${fontSize} font-semibold`}>{item.year}</span>
+					journeyData.map((phase) => (
+						<div class="border-l-4 border-cactus pl-6">
+							<h3 class="text-xl font-semibold text-cactus mb-2">{phase.phase}</h3>
+							<div class="space-y-4 mb-4">
+								{phase.milestones.map((milestone) => (
+									<div class="flex items-center">
+										<div class="flex w-20 flex-shrink-0 flex-col items-center pr-4">
+											<Icon
+												name="mdi:circle"
+												class="text-cactus h-4 w-4"
+											/>
+											<span class={`text-cactus ${fontSize} font-semibold`}>{milestone.year}</span>
+										</div>
+										<div class="pl-4">
+											<h4 class="text-lg font-medium">{milestone.title}</h4>
+											<p class="text-sm text-gray-600 dark:text-gray-400">{milestone.subtitle}</p>
+										</div>
+									</div>
+								))}
 							</div>
-							<div class="border-cactus border-l-4 pl-4">
-								<h3 class="text-lg font-medium">{item.title}</h3>
-								<p class="text-sm text-gray-600 dark:text-gray-400">{item.subtitle}</p>
-								{item.description && <p class={`mt-2 ${fontSize}`}>{item.description}</p>}
-								{item.bullets.length > 0 && (
-									<ul class={`mt-2 list-inside list-disc space-y-1 ${fontSize}`}>
-										{item.bullets.map((bullet) => (
-											<li>{bullet}</li>
-										))}
+							<p class={`mb-4 ${fontSize}`}>{phase.description}</p>
+							{phase.skills && phase.skills.length > 0 && (
+								<div class="mb-4">
+									<h4 class="text-lg font-semibold mb-2">Skills Obtained</h4>
+									<ul class={`list-disc list-inside ${fontSize} space-y-1`}>
+										{phase.skills.map((skill) => <li>{skill}</li>)}
 									</ul>
-								)}
+								</div>
+							)}
+							<div class="mb-4 text-center">
+								<img src={phase.meme} alt="Meme" class="w-full max-w-sm h-auto rounded mx-auto" />
+								<p class="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">{phase.hint}</p>
 							</div>
 						</div>
 					))
@@ -62,7 +74,7 @@ const myStory = "I had never imagined to become a Software Engineer when I was y
 				<div class="flex flex-wrap gap-2">
 						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
 							<Icon name="mdi:music-clef-treble" class="mr-2 h-6 w-6" />
-							Listening music
+							Music & Singing
 						</span>
 						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
 							<Icon name="fluent:calligraphy-pen-20-filled" class="mr-2 h-6 w-6" />
