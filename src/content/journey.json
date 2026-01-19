@@ -34,8 +34,8 @@
     },
     {
         "phase": "Innovation as AI Engineer",
-        "description": "My first tech company provides me well-rounded training and experience in ML model development and deployment. I learnt from nothing to being able to deploy full-stack AI applications to solve real business problems.",
-        "skills": ["AI model development", "MLOps", "Cloud computing", "Agile Development"],
+        "description": "My first tech company provides me well-rounded training and experience in ML model development and deployment. Besides, I also get to work with cutting edge AI and LLM technologies to build innovative solutions for real-world problems.",
+        "skills": ["AI model development", "MLOps", "Cloud computing", "LLM Agents", "Agile Development"],
         "meme": "/memes/mlops_1.png",
         "hint": "When you realise every pieces of components need to work together to make an AI product function smoothly",
         "milestones": [
@@ -49,7 +49,7 @@
     {
         "phase": "Pursuing Advanced Studies",
         "description": "During my work, I realised I need to deepen my knowledge in statistics and computer science to build more robust AI applications. Therefore, I decided to pursue a Master's degree in Data Science to solidify my foundation and open up more advanced opportunities.",
-        "skills": ["Advanced statistics", "Big data technologies", "Research methodologies", "Academic writing"],
+        "skills": ["Data Structure Algorithms", "Big data technologies", "Data Mining Techniques", "Project Management"],
         "meme": "/memes/master_1.jpg",
         "hint": "When you reaslise that at the end, a solid foundation is key to long-term success",
         "milestones": [

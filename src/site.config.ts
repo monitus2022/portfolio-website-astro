@@ -26,7 +26,6 @@ export const siteConfig: SiteConfig = {
 		- In the footer found in src/components/layout/Footer.astro L:12
 	*/
 	title: "Monitus - My Personal Hub",
-	title: "Monitus - My Personal Hub",
 	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
 	url: "https://monitus.org",
 };
@@ -42,7 +41,7 @@ export const menuLinks: { path: string; title: string }[] = [
 		title: "About Me",
 	},
 	{
-		path: "/projects/",
+		path: "/skills-projects/",
 		title: "Skills and Experience"
 	},
 	{
