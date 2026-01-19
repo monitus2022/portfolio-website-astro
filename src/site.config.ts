@@ -42,7 +42,7 @@ export const menuLinks: { path: string; title: string }[] = [
 	},
 	{
 		path: "/skills-projects/",
-		title: "Skills and Experience"
+		title: "Skills and Projects"
 	},
 	{
 		path: "/notes/",

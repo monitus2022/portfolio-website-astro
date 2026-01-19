@@ -34,7 +34,7 @@
     },
     {
         "phase": "Innovation as AI Engineer",
-        "description": "My first tech company provides me well-rounded training and experience in ML model development and deployment. Besides, I also get to work with cutting edge AI and LLM technologies to build innovative solutions for real-world problems.",
+        "description": "My first tech company provides me well-rounded training and experience in ML model development and deployment. As a start-up company, I'm heavily involved in designing data pipeline and MLOps architecture. Besides, I also get to work with cutting edge AI and LLM technologies to build innovative solutions for real-world problems.",
         "skills": ["AI model development", "MLOps", "Cloud computing", "LLM Agents", "Agile Development"],
         "meme": "/memes/mlops_1.png",
         "hint": "When you realise every pieces of components need to work together to make an AI product function smoothly",
