@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, render } from "astro:content";
+import { type CollectionEntry, render, getCollection } from "astro:content";
 import FormattedDate from "@/components/FormattedDate.astro";
 import type { HTMLTag, Polymorphic } from "astro/types";
 
@@ -10,37 +10,85 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 
 const { as: Tag = "div", note, isPreview = false } = Astro.props;
 const { Content } = await render(note);
+
+const isBookChapter = note.id.includes('/') && !isPreview;
+let chapters: CollectionEntry<"note">[] = [];
+if (isBookChapter) {
+	const allNotes = await getCollection("note");
+	const book = note.id.split('/')[0];
+	chapters = allNotes
+		.filter(n => n.id.startsWith(book + '/'))
+		.sort((a, b) => ((a.data as any).chapter || 0) - ((b.data as any).chapter || 0));
+}
 ---
 
-<article
-	class:list={[isPreview && "bg-global-text/5 inline-grid rounded-md px-4 py-3"]}
-	data-pagefind-body={isPreview ? false : true}
->
-	<Tag class="title" class:list={{ "text-base": isPreview }}>
-		{
-			isPreview ? (
-				<a class="cactus-link" href={`/notes/${note.id}/`}>
-					{note.data.title}
-				</a>
-			) : (
-				<>{note.data.title}</>
-			)
-		}
-	</Tag>
-	<FormattedDate
-		dateTimeOptions={{
-			hour: "2-digit",
-			minute: "2-digit",
-			year: "2-digit",
-			month: "2-digit",
-			day: "2-digit",
-		}}
-		date={note.data.publishDate}
-	/>
-	<div
-		class="prose prose-sm prose-cactus mt-4 max-w-none [&>p:last-of-type]:mb-0"
-		class:list={{ "line-clamp-6": isPreview }}
-	>
-		<Content />
+{isBookChapter ? (
+	<div class="grid grid-cols-[200px_1fr] gap-4">
+		<aside class="border-r border-gray-200 dark:border-gray-700 pr-4">
+			<h3 class="font-semibold mb-2">Chapters</h3>
+			<ul class="space-y-1">
+				{chapters.map(chapter => (
+					<li>
+						<a
+							class={`block px-2 py-1 rounded ${chapter.id === note.id ? 'bg-accent text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+							href={`/notes/${chapter.id}/`}
+						>
+							{chapter.data.title}
+						</a>
+					</li>
+				))}
+			</ul>
+		</aside>
+		<article data-pagefind-body>
+			<Tag class="title">
+				{note.data.title}
+			</Tag>
+			<FormattedDate
+				dateTimeOptions={{
+					hour: "2-digit",
+					minute: "2-digit",
+					year: "2-digit",
+					month: "2-digit",
+					day: "2-digit",
+				}}
+				date={note.data.publishDate}
+			/>
+			<div class="prose prose-sm prose-cactus mt-4 max-w-none [&>p:last-of-type]:mb-0">
+				<Content />
+			</div>
+		</article>
 	</div>
-</article>
+) : (
+	<article
+		class:list={[isPreview && "bg-global-text/5 inline-grid rounded-md px-4 py-3"]}
+		data-pagefind-body={isPreview ? false : true}
+	>
+		<Tag class="title" class:list={{ "text-base": isPreview }}>
+			{
+				isPreview ? (
+					<a class="cactus-link" href={`/notes/${note.id}/`}>
+						{note.data.title}
+					</a>
+				) : (
+					<>{note.data.title}</>
+				)
+			}
+		</Tag>
+		<FormattedDate
+			dateTimeOptions={{
+				hour: "2-digit",
+				minute: "2-digit",
+				year: "2-digit",
+				month: "2-digit",
+				day: "2-digit",
+			}}
+			date={note.data.publishDate}
+		/>
+		<div
+			class="prose prose-sm prose-cactus mt-4 max-w-none [&>p:last-of-type]:mb-0"
+			class:list={{ "line-clamp-6": isPreview }}
+		>
+			<Content />
+		</div>
+	</article>
+)}

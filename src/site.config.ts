@@ -42,7 +42,7 @@ export const menuLinks: { path: string; title: string }[] = [
 	},
 	{
 		path: "/skills-projects/",
-		title: "Skills and Projects"
+		title: "Skills and Projects",
 	},
 	{
 		path: "/notes/",
@@ -50,12 +50,13 @@ export const menuLinks: { path: string; title: string }[] = [
 	},
 	{
 		path: "/fun/",
-		title: "Fun Stuff"
-	}
+		title: "Fun Stuff",
+	},
 ];
 
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
+	ignoreLanguages: ["mermaid"],
 	styleOverrides: {
 		borderRadius: "4px",
 		codeFontFamily:

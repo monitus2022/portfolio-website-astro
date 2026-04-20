@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
+
+const allNotes = await getCollection("note");
+
+// Extract unique book names from note IDs that have '/'
+const bookPrefixes = allNotes
+	.filter(note => note.id.includes('/'))
+	.map(note => note.id.split('/')[0])
+	.filter((book): book is string => !!book);
+const books = Array.from(new Set(bookPrefixes)).sort();
+
+const meta = {
+	description: "Browse my book notes by title",
+	title: "Book Notes",
+};
+---
+
+<PageLayout meta={meta}>
+	<section>
+		<h1 class="title mb-12">Book Notes</h1>
+		<ul class="mt-6 space-y-4">
+			{books.map(book => (
+				<li>
+					<a class="cactus-link text-lg" href={`/notes/books/${book}/`}>
+						{book.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</PageLayout>

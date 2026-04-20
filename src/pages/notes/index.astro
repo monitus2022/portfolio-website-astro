@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
+
+const allNotes = await getCollection("note");
+
+// Group notes by category
+const notesByCategory = allNotes.reduce(
+	(acc, note) => {
+		const category = (note.data as any).category || "other";
+		if (!acc[category]) acc[category] = [];
+		acc[category].push(note);
+		return acc;
+	},
+	{} as Record<string, typeof allNotes>,
+);
+
+// For books, group by book prefix
+const books = allNotes
+	.filter((note) => note.id.includes("/") && (note.data as any).category === "books")
+	.reduce(
+		(acc, note) => {
+			const book = note.id.split("/")[0];
+			if (!acc[book]) acc[book] = [];
+			acc[book].push(note);
+			return acc;
+		},
+		{} as Record<string, typeof allNotes>,
+	);
+
+// Get first chapter for each book
+const bookEntries = Object.entries(books)
+	.filter(([_, chapters]) => chapters.length > 0)
+	.map(([book, chapters]) => {
+		const firstChapter = chapters.sort(
+			(a, b) => ((a.data as any).chapter || 0) - ((b.data as any).chapter || 0),
+		)[0];
+		return {
+			firstChapter,
+			title: book.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase()),
+		};
+	});
+
+const getCategoryTitle = (category: string) => {
+	if (category === "books") return "Books for Interview";
+	if (category === "courses") return "Courses I Took";
+	return category.replace(/\b\w/g, (l) => l.toUpperCase());
+};
+
+const meta = {
+	description: "Explore my notes organized by category",
+	title: "Notes",
+};
+---
+
+<PageLayout meta={meta}>
+	<section>
+		<h1 class="title mb-12">Notes</h1>
+
+		{
+			bookEntries.length > 0 && (
+				<section class="mb-12">
+					<h2 class="mb-6 text-2xl font-semibold">{getCategoryTitle("books")}</h2>
+					<ul class="space-y-4">
+						{bookEntries.map(({ firstChapter, title }) => (
+							<li>
+								<a class="cactus-link text-lg" href={`/notes/${firstChapter.id}/`}>
+									{title}
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+
+		{
+			Object.entries(notesByCategory).map(([category, notes]) => {
+				if (category === "books") return null; // Handled above
+				const categoryTitle = getCategoryTitle(category);
+				return (
+					<section class="mb-12">
+						<h2 class="mb-6 text-2xl font-semibold">{categoryTitle}</h2>
+						<ul class="space-y-4">
+							{notes.map((note) => (
+								<li>
+									<a class="cactus-link" href={`/notes/${note.id}/`}>
+										{note.data.title}
+									</a>
+								</li>
+							))}
+						</ul>
+					</section>
+				);
+			})
+		}
+	</section>
+</PageLayout>
