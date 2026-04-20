@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { visit } from "unist-util-visit";
 // Rehype plugins
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
@@ -11,13 +12,25 @@ import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
-import rehypeMermaid from "rehype-mermaid";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 // Remark plugins
 import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions"; /* Add admonitions */
 import { remarkGithubCard } from "./src/plugins/remark-github-card";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+
+function remarkMermaid() {
+	return (tree) => {
+		visit(tree, "code", (node, index, parent) => {
+			if (node.lang === "mermaid") {
+				parent.children[index] = {
+					type: "html",
+					value: `<div class="mermaid">${node.value}</div>`,
+				};
+			}
+		});
+	};
+}
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // https://astro.build/config
@@ -78,10 +91,15 @@ export default defineConfig({
 					target: "_blank",
 				},
 			],
-			rehypeMermaid,
 			rehypeUnwrapImages,
 		],
-		remarkPlugins: [remarkReadingTime, remarkDirective, remarkGithubCard, remarkAdmonitions],
+		remarkPlugins: [
+			remarkReadingTime,
+			remarkDirective,
+			remarkGithubCard,
+			remarkAdmonitions,
+			remarkMermaid,
+		],
 		remarkRehype: {
 			footnoteLabelProperties: {
 				className: [""],
