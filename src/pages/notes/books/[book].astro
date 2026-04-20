@@ -1,0 +1,48 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from "@/layouts/Base.astro";
+import type { GetStaticPaths } from "astro";
+
+export const getStaticPaths = (async () => {
+	const allNotes = await getCollection("note");
+	const bookPrefixes = allNotes
+		.filter(note => note.id.includes('/'))
+		.map(note => note.id.split('/')[0])
+		.filter((book): book is string => !!book);
+	const books = Array.from(new Set(bookPrefixes));
+	return books.map(book => ({
+		params: { book },
+		props: { book },
+	}));
+}) satisfies GetStaticPaths;
+
+const { book } = Astro.props;
+
+// Get all chapters for this book
+const allNotes = await getCollection("note");
+const chapters = allNotes
+	.filter(note => note.id.startsWith(book + '/'))
+	.sort((a, b) => ((a.data as any).chapter || 0) - ((b.data as any).chapter || 0));
+
+const meta = {
+	description: `Notes for the book: ${book.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}`,
+	title: `${book.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Notes`,
+};
+---
+
+<PageLayout meta={meta}>
+	<section>
+		<h1 class="title mb-12">
+			{book.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase())} Notes
+		</h1>
+		<ul class="mt-6 space-y-4">
+			{chapters.map(chapter => (
+				<li>
+					<a class="cactus-link" href={`/notes/${chapter.id}/`}>
+						{chapter.data.title}
+					</a>
+				</li>
+			))}
+		</ul>
+	</section>
+</PageLayout>
