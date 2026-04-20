@@ -11,6 +11,7 @@ import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
+import rehypeMermaid from "rehype-mermaid";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 // Remark plugins
 import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
@@ -77,6 +78,7 @@ export default defineConfig({
 					target: "_blank",
 				},
 			],
+			rehypeMermaid,
 			rehypeUnwrapImages,
 		],
 		remarkPlugins: [remarkReadingTime, remarkDirective, remarkGithubCard, remarkAdmonitions],
