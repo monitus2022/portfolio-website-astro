@@ -4,16 +4,20 @@ import PageLayout from "@/layouts/Base.astro";
 
 const allNotes = await getCollection("note");
 
-// Group notes by category
+// Group notes by category, ignoring uncategorised notes (no "Other" section)
 const notesByCategory = allNotes.reduce(
 	(acc, note) => {
-		const category = (note.data as any).category || "other";
+		const category = (note.data as any).category;
+		if (!category || category === "other") return acc;
 		if (!acc[category]) acc[category] = [];
 		acc[category].push(note);
 		return acc;
 	},
 	{} as Record<string, typeof allNotes>,
 );
+
+// External certification notes live on their own subdomain
+const certificationNotesUrl = "https://notes.monitus.org";
 
 // For books, group by book prefix
 const books = allNotes
@@ -73,6 +77,22 @@ const meta = {
 				</section>
 			)
 		}
+
+		<section class="mb-12">
+			<h2 class="mb-6 text-2xl font-semibold">Certification</h2>
+			<ul class="space-y-4">
+				<li>
+					<a
+						class="cactus-link text-lg"
+						href={certificationNotesUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Certifications Notes of AWS and Others
+					</a>
+				</li>
+			</ul>
+		</section>
 
 		{
 			Object.entries(notesByCategory).map(([category, notes]) => {
