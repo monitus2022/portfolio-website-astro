@@ -6,8 +6,8 @@ const allNotes = await getCollection("note");
 
 // Extract unique book names from note IDs that have '/'
 const bookPrefixes = allNotes
-	.filter(note => note.id.includes('/'))
-	.map(note => note.id.split('/')[0])
+	.filter((note) => note.id.includes("/"))
+	.map((note) => note.id.split("/")[0])
 	.filter((book): book is string => !!book);
 const books = Array.from(new Set(bookPrefixes)).sort();
 

@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "@/components/project/ProjectCard.astro";
+import PageLayout from "@/layouts/Base.astro";
+
+const projects = (await getCollection("project")).sort((a, b) => a.data.order - b.data.order);
+const liveProjects = projects.filter((project) => project.data.status === "live");
+const inProgressProjects = projects.filter((project) => project.data.status === "in-progress");
+
+const meta = {
+	description:
+		"Selected AI, machine-learning, and software projects by Tommy Cheung, including O.W.L. Online.",
+	title: "Projects",
+};
+---
+
+<PageLayout meta={meta}>
+	<section class="mb-16">
+		<h1 class="mb-4 text-3xl font-bold">Projects</h1>
+		<p class="max-w-2xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+			A selection of things I have built. Each page covers the problem, the approach, and what
+			is publicly shareable.
+		</p>
+	</section>
+
+	<section class="mb-16">
+		<h2 class="mb-6 text-2xl font-semibold">Live</h2>
+		<div class="grid gap-4 sm:grid-cols-2">
+			{liveProjects.map((project) => <ProjectCard project={project} />)}
+		</div>
+	</section>
+
+	{
+		inProgressProjects.length > 0 && (
+			<section>
+				<h2 class="mb-6 text-2xl font-semibold">In development</h2>
+				<div class="grid gap-4 sm:grid-cols-2">
+					{inProgressProjects.map((project) => (
+						<ProjectCard project={project} />
+					))}
+				</div>
+			</section>
+		)
+	}
+
+	<section class="mt-16 border-t border-zinc-200 pt-8 dark:border-zinc-800">
+		<p class="text-sm text-zinc-600 dark:text-zinc-300">
+			Want more detail about a project, or the code behind it?
+			<a class="cactus-link" href="/contact/">Get in touch</a>.
+		</p>
+	</section>
+</PageLayout>

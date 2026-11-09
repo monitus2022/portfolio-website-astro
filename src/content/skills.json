@@ -28,7 +28,7 @@
 			{ "name": "Pydantic", "icon": "simple-icons:pydantic" },
 			{ "name": "PostgresSQL", "icon": "simple-icons:postgresql" },
 			{ "name": "Redis", "icon": "simple-icons:redis" },
-			{ "name": "Pytest", "icon": "simple-icons:pytest" }		
+			{ "name": "Pytest", "icon": "simple-icons:pytest" }
 		]
 	},
 	{

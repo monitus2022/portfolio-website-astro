@@ -1,0 +1,78 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+	project: CollectionEntry<"project">;
+	compact?: boolean;
+}
+
+const { project, compact = false } = Astro.props;
+
+const statusLabels = {
+	live: "Live",
+	"in-progress": "In development",
+	archived: "Archived",
+} as const;
+
+const status = statusLabels[project.data.status];
+const projectUrl = `/projects/${project.id}/`;
+---
+
+<article
+	class:list={[
+		"flex h-full flex-col rounded-lg border border-zinc-200 bg-zinc-50/70 p-5 transition-colors dark:border-zinc-800 dark:bg-zinc-900/40",
+		!compact && "hover:border-accent/60",
+	]}
+>
+	<div class="mb-3 flex items-start justify-between gap-3">
+		<h3 class:list={["font-semibold", compact ? "text-base" : "text-xl"]}>
+			<a class="hover:text-accent" href={projectUrl}>{project.data.title}</a>
+		</h3>
+		<span
+			class:list={[
+				"shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium",
+				project.data.status === "live"
+					? "bg-brand/15 text-accent-2"
+					: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",
+			]}
+		>
+			{status}
+		</span>
+	</div>
+
+	<p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">{project.data.summary}</p>
+
+	{
+		!compact && project.data.stack.length > 0 && (
+			<ul class="mt-4 flex flex-wrap gap-1.5">
+				{project.data.stack.map((item) => (
+					<li class="rounded bg-zinc-200/70 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+						{item}
+					</li>
+				))}
+			</ul>
+		)
+	}
+
+	<div class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-4 text-sm">
+		{
+			project.data.demoUrl && (
+				<a
+					class="cactus-link"
+					href={project.data.demoUrl}
+					rel="noreferrer"
+					target="_blank"
+				>
+					<span class="sr-only">{project.data.title}: </span>Live demo
+				</a>
+			)
+		}
+		{
+			project.data.repoUrl && (
+				<a class="cactus-link" href={project.data.repoUrl} rel="noreferrer" target="_blank">
+					<span class="sr-only">{project.data.title}: </span>Repository
+				</a>
+			)
+		}
+	</div>
+</article>

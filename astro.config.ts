@@ -1,5 +1,4 @@
 import fs from "node:fs";
-import { visit } from "unist-util-visit";
 // Rehype plugins
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
@@ -10,19 +9,21 @@ import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import robotsTxt from "astro-robots-txt";
 import webmanifest from "astro-webmanifest";
+import type { Root } from "mdast";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeUnwrapImages from "rehype-unwrap-images";
 // Remark plugins
 import remarkDirective from "remark-directive"; /* Handle ::: directives as nodes */
+import { visit } from "unist-util-visit";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions"; /* Add admonitions */
 import { remarkGithubCard } from "./src/plugins/remark-github-card";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
 function remarkMermaid() {
-	return (tree) => {
+	return (tree: Root) => {
 		visit(tree, "code", (node, index, parent) => {
-			if (node.lang === "mermaid") {
+			if (node.lang === "mermaid" && parent && typeof index === "number") {
 				parent.children[index] = {
 					type: "html",
 					value: `<div class="mermaid">${node.value}</div>`,
@@ -31,11 +32,16 @@ function remarkMermaid() {
 		});
 	};
 }
+
 import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
+	redirects: {
+		"/skills-projects": "/projects/",
+		"/fun": "/",
+	},
 	image: {
 		domains: ["webmention.io"],
 	},
@@ -48,7 +54,7 @@ export default defineConfig({
 		webmanifest({
 			// See: https://github.com/alextim/astro-lib/blob/main/packages/astro-webmanifest/README.md
 			name: siteConfig.title,
-			short_name: "Astro_Cactus", // optional
+			short_name: "Tommy", // optional
 			description: siteConfig.description,
 			lang: siteConfig.lang,
 			icon: "public/icon.svg", // the source for generating favicon & icons
@@ -70,8 +76,8 @@ export default defineConfig({
 				},
 			],
 			start_url: "/",
-			background_color: "#1d1f21",
-			theme_color: "#2bbc8a",
+			background_color: "#0f172a",
+			theme_color: "#e4a3b2",
 			display: "standalone",
 			config: {
 				insertFaviconLinks: false,

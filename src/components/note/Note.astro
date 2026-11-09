@@ -1,7 +1,7 @@
 ---
-import { type CollectionEntry, render, getCollection } from "astro:content";
-import FormattedDate from "@/components/FormattedDate.astro";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 import type { HTMLTag, Polymorphic } from "astro/types";
+import FormattedDate from "@/components/FormattedDate.astro";
 
 type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 	note: CollectionEntry<"note">;
@@ -11,14 +11,15 @@ type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
 const { as: Tag = "div", note, isPreview = false } = Astro.props;
 const { Content } = await render(note);
 
-const isBookChapter = note.id.includes('/') && !isPreview;
+const needsMermaid = note.body?.includes("```mermaid") ?? false;
+const isBookChapter = note.id.includes("/") && !isPreview;
 let chapters: CollectionEntry<"note">[] = [];
 if (isBookChapter) {
 	const allNotes = await getCollection("note");
-	const book = note.id.split('/')[0];
+	const book = note.id.split("/")[0];
 	chapters = allNotes
-		.filter(n => n.id.startsWith(book + '/'))
-		.sort((a, b) => ((a.data as any).chapter || 0) - ((b.data as any).chapter || 0));
+		.filter((n) => n.id.startsWith(`${book}/`))
+		.sort((a, b) => (a.data.chapter ?? 0) - (b.data.chapter ?? 0));
 }
 ---
 
@@ -30,7 +31,7 @@ if (isBookChapter) {
 				{chapters.map(chapter => (
 					<li>
 						<a
-							class={`block px-2 py-1 rounded ${chapter.id === note.id ? 'bg-accent text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+							class={`block px-2 py-1 rounded ${chapter.id === note.id ? 'bg-brand text-zinc-950' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
 							href={`/notes/${chapter.id}/`}
 						>
 							{chapter.data.title}
@@ -92,3 +93,12 @@ if (isBookChapter) {
 		</div>
 	</article>
 )}
+
+{
+	needsMermaid && (
+		<>
+			<script is:inline src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" />
+			<script is:inline>mermaid.initialize({ startOnLoad: true });</script>
+		</>
+	)
+}

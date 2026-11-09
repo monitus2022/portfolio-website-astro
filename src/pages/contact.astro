@@ -1,0 +1,92 @@
+---
+import PageLayout from "@/layouts/Base.astro";
+import { contactEmail } from "@/site.config";
+
+const meta = {
+	description: "Contact Tommy Cheung about AI/ML engineering roles, projects, or collaborations.",
+	title: "Contact",
+};
+
+const encodedEmail = Buffer.from(contactEmail).toString("base64");
+---
+
+<PageLayout meta={meta}>
+	<section class="mb-12">
+		<h1 class="mb-4 text-3xl font-bold">Contact</h1>
+		<p class="max-w-2xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+			I am currently open to AI and machine-learning engineering roles. The fastest way to reach
+			me is LinkedIn; email works too.
+		</p>
+	</section>
+
+	<section class="mb-12">
+		<h2 class="mb-4 text-xl font-semibold">Start a conversation</h2>
+		<div class="flex flex-wrap gap-3">
+			<a
+				class="inline-flex items-center rounded-md border border-accent-2/50 bg-brand px-4 py-2 text-sm font-semibold text-zinc-950 hover:opacity-90 dark:border-transparent"
+				href="https://www.linkedin.com/in/tommy-cheung-hk"
+				rel="noreferrer"
+				target="_blank"
+			>
+				Message me on LinkedIn
+			</a>
+			<a
+				class="inline-flex items-center rounded-md border border-zinc-300 px-4 py-2 text-sm font-semibold hover:border-accent hover:text-accent dark:border-zinc-700"
+				href="https://github.com/monitus2022"
+				rel="noreferrer"
+				target="_blank"
+			>
+				GitHub
+			</a>
+		</div>
+	</section>
+
+	<section class="mb-12">
+		<h2 class="mb-3 text-xl font-semibold">Email</h2>
+		<p class="mb-3 text-sm text-zinc-600 dark:text-zinc-300">
+			Email is hidden by default to reduce scraping. Click to reveal it.
+		</p>
+		<email-reveal>
+			<button
+				class="cursor-pointer rounded-md border border-zinc-300 px-4 py-2 text-sm font-semibold hover:border-accent hover:text-accent dark:border-zinc-700"
+				data-email={encodedEmail}
+				type="button"
+			>
+				Reveal email address
+			</button>
+			<span class="text-sm" data-email-output></span>
+		</email-reveal>
+	</section>
+
+	<section class="rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+		<h2 class="mb-2 text-xl font-semibold">CV</h2>
+		<p class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+			My full CV is available on request. Message me on LinkedIn or reveal my email above and
+			I will send it over.
+		</p>
+	</section>
+</PageLayout>
+
+<script>
+	class EmailReveal extends HTMLElement {
+		connectedCallback() {
+			const button = this.querySelector<HTMLButtonElement>("button[data-email]");
+			const output = this.querySelector<HTMLSpanElement>("[data-email-output]");
+
+			button?.addEventListener("click", () => {
+				const email = atob(button.dataset.email ?? "");
+				if (!email || !output) return;
+
+				const link = document.createElement("a");
+				link.className = "cactus-link";
+				link.href = `mailto:${email}`;
+				link.textContent = email;
+
+				output.append(link);
+				button.remove();
+			});
+		}
+	}
+
+	customElements.define("email-reveal", EmailReveal);
+</script>
