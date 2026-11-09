@@ -1,8 +1,8 @@
-import type { SiteConfig } from "@/types";
 import type { AstroExpressiveCodeOptions } from "astro-expressive-code";
+import type { SiteConfig } from "@/types";
 
 export const siteConfig: SiteConfig = {
-	// Used as both a meta property (src/components/BaseHead.astro L:31 + L:49) & the generated satori png (src/pages/og-image/[slug].png.ts)
+	// Used as both a meta property (src/components/BaseHead.astro) & the webmanifest name.
 	author: "Tommy Cheung",
 	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
 	date: {
@@ -13,50 +13,63 @@ export const siteConfig: SiteConfig = {
 			year: "numeric",
 		},
 	},
-	// Used as the default description meta property and webmanifest description
-	description: "My personal website!",
-	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
+	// Used as the default description meta property and webmanifest description.
+	description:
+		"AI Engineer with a data science background, building practical LLM, ML, and MLOps systems. Open to AI/ML engineering roles.",
+	// HTML lang property, found in src/layouts/Base.astro.
 	lang: "en-GB",
-	// Meta property, found in src/components/BaseHead.astro L:42
+	// Meta property, found in src/components/BaseHead.astro.
 	ogLocale: "en_GB",
-	/* 
-		- Used to construct the meta title property found in src/components/BaseHead.astro L:11 
-		- The webmanifest name found in astro.config.ts L:42
-		- The link value found in src/components/layout/Header.astro L:35
-		- In the footer found in src/components/layout/Footer.astro L:12
-	*/
-	title: "Monitus - My Personal Hub",
-	// ! Please remember to replace the following site property with your own domain, used in astro.config.ts
+	// Used for the meta title, webmanifest name, header wordmark, and footer.
+	title: "Tommy Cheung",
+	// Used to build canonical URLs, sitemap entries, and RSS links.
 	url: "https://monitus.org",
 };
 
-// Used to generate links in both the Header & Footer.
+// Used to generate the primary navigation in the Header.
 export const menuLinks: { path: string; title: string }[] = [
 	{
 		path: "/",
 		title: "Home",
 	},
 	{
+		path: "/projects/",
+		title: "Projects",
+	},
+	{
 		path: "/about/",
-		title: "About Me",
+		title: "About",
 	},
 	{
-		path: "/skills-projects/",
-		title: "Skills and Projects",
-	},
-	{
-		path: "/notes/",
-		title: "Notes",
-	},
-	{
-		path: "/fun/",
-		title: "Fun Stuff",
+		path: "/contact/",
+		title: "Contact",
 	},
 ];
 
+// Secondary destinations. These are intentionally kept out of the primary nav so
+// the site stays focused on the public profile.
+export const resourceLinks: { path: string; title: string; external?: boolean }[] = [
+	{
+		path: "/notes/",
+		title: "Reading Notes",
+	},
+	{
+		path: "https://notes.monitus.org",
+		title: "Study Notes",
+		external: true,
+	},
+	{
+		path: "https://code.monitus.org",
+		title: "Code Cheatsheets",
+		external: true,
+	},
+];
+
+// Shown on the Contact page behind a reveal button to reduce harvesting.
+export const contactEmail = "monitus202201@proton.me";
+
 // https://expressive-code.com/reference/configuration/
 export const expressiveCodeOptions: AstroExpressiveCodeOptions = {
-	ignoreLanguages: ["mermaid"],
 	styleOverrides: {
 		borderRadius: "4px",
 		codeFontFamily:

@@ -1,22 +1,108 @@
 ---
+import { getCollection } from "astro:content";
+import ProjectCard from "@/components/project/ProjectCard.astro";
 import SocialList from "@/components/SocialList.astro";
+import skillsData from "@/content/skills.json";
 import PageLayout from "@/layouts/Base.astro";
+import { resourceLinks } from "@/site.config";
+
+const featuredProjects = (await getCollection("project"))
+	.filter((project) => project.data.featured)
+	.sort((a, b) => a.data.order - b.data.order);
+
+const focusAreaTitles = [
+	"AI & Machine Learning",
+	"Data Analytics",
+	"Backend Development",
+	"DevOps & Tools",
+];
+const focusAreas = skillsData.filter((category) => focusAreaTitles.includes(category.title));
 ---
 
 <PageLayout meta={{ title: "Home" }}>
-	<section>
-		<h1 class="title mb-12">Hello, I'm Tommy!</h1>
-		<p class="mb-4">
-			Hi, I'm Tommy Cheung, an AI Engineer passionate about applying cutting-edge algorithms,
-			models, and tools to solve real-world problems. With a strong background in data science, I'm
-			diving deep into the latest advancements in AI algorithms, large language models (LLMs), and
-			AI agents—not for theory, but for practical impact. Currently seeking new opportunities, I
-			love turning complex challenges into actionable solutions!
+	<section class="mb-20">
+		<p
+			class="mb-4 inline-flex items-center gap-2 rounded-full bg-accent/15 px-3 py-1 text-xs font-medium text-accent-2"
+		>
+			<span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+			Open to AI/ML engineering roles
 		</p>
+		<h1 class="mb-3 text-3xl font-bold sm:text-4xl">Tommy Cheung</h1>
+		<p class="mb-5 text-lg font-medium text-accent">AI Engineer</p>
+		<p class="mb-6 max-w-2xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+			I build practical LLM and machine-learning systems end to end — from data pipelines and
+			model deployment to the interfaces people actually use. My background in data science and
+			audit shapes how I approach ambiguous problems: measure carefully, ship something useful,
+			then improve it.
+		</p>
+		<div class="mb-6 flex flex-wrap gap-3">
+			<a
+				class="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white dark:text-zinc-950 hover:opacity-90"
+				href="/projects/"
+			>
+				View projects
+			</a>
+			<a
+				class="inline-flex items-center rounded-md border border-zinc-300 px-4 py-2 text-sm font-semibold hover:border-accent hover:text-accent dark:border-zinc-700"
+				href="/contact/"
+			>
+				Request CV
+			</a>
+		</div>
 		<SocialList />
-		<p class="mt-8 text-sm text-gray-600 dark:text-gray-400">
-			(This site is built with Astro, Tailwind CSS, and deployed on Vercel.)
-			(This site is still a work in progress! Sorry for any incomplete sections or bugs.)
+	</section>
+
+	<section class="mb-20">
+		<div class="mb-6 flex items-end justify-between gap-4">
+			<h2 class="text-2xl font-semibold">Selected work</h2>
+			<a class="cactus-link text-sm" href="/projects/">All projects</a>
+		</div>
+		<div class="grid gap-4 sm:grid-cols-2">
+			{featuredProjects.map((project) => <ProjectCard project={project} />)}
+		</div>
+	</section>
+
+	<section class="mb-20">
+		<h2 class="mb-6 text-2xl font-semibold">What I work on</h2>
+		<div class="grid gap-5 sm:grid-cols-2">
+			{
+				focusAreas.map((category) => (
+					<div>
+						<h3 class="mb-2 text-sm font-semibold text-accent">{category.title}</h3>
+						<ul class="flex flex-wrap gap-1.5">
+							{category.skills.slice(0, 5).map((skill) => (
+								<li class="rounded bg-zinc-200/70 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+									{skill.name}
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section>
+		<h2 class="mb-4 text-2xl font-semibold">Elsewhere</h2>
+		<p class="mb-4 text-sm text-zinc-600 dark:text-zinc-300">
+			Longer notes, references, and experiments live outside this profile.
 		</p>
+		<ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+			{
+				resourceLinks.map((link) => (
+					<li>
+						<a
+							class="cactus-link"
+							href={link.path}
+							rel={link.external ? "noreferrer" : undefined}
+							target={link.external ? "_blank" : undefined}
+						>
+							{link.title}
+							{link.external && <span aria-hidden="true"> ↗</span>}
+						</a>
+					</li>
+				))
+			}
+		</ul>
 	</section>
 </PageLayout>
