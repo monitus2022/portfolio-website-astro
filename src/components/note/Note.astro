@@ -31,7 +31,7 @@ if (isBookChapter) {
 				{chapters.map(chapter => (
 					<li>
 						<a
-							class={`block px-2 py-1 rounded ${chapter.id === note.id ? 'bg-brand text-zinc-950' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+							class={`block px-2 py-1 rounded ${chapter.id === note.id ? 'bg-accent text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
 							href={`/notes/${chapter.id}/`}
 						>
 							{chapter.data.title}

@@ -8,13 +8,12 @@
 
 /* you could refactor below to use light-dark(), depending on your target audience */
 @theme {
-	--color-global-bg: #faf5f6;
-	--color-global-text: #2b2225;
-	--color-link: #9f4d66;
-	--color-accent: #a64d66;
-	--color-accent-2: #9f4d66;
-	--color-brand: #e4a3b2;
-	--color-quote: #3f6f86;
+	--color-global-bg: oklch(97% 0.006 350);
+	--color-global-text: oklch(25% 0.02 350);
+	--color-link: oklch(45% 0.17 12);
+	--color-accent: oklch(52% 0.19 12);
+	--color-accent-2: oklch(44% 0.17 12);
+	--color-quote: oklch(52% 0.14 220);
 }
 
 @layer base {
@@ -29,12 +28,12 @@
 
 		&[data-theme="dark"] {
 			color-scheme: dark;
-			--color-global-bg: #1c171a;
-			--color-global-text: #f2e9ec;
-			--color-link: #e4a3b2;
-			--color-accent: #e4a3b2;
-			--color-accent-2: #e4a3b2;
-			--color-quote: #9ec9dc;
+			--color-global-bg: oklch(22% 0.02 350);
+			--color-global-text: oklch(90% 0.01 350);
+			--color-link: oklch(78% 0.13 12);
+			--color-accent: oklch(78% 0.14 12);
+			--color-accent-2: oklch(80% 0.13 12);
+			--color-quote: oklch(85% 0.1 200);
 		}
 	}
 
