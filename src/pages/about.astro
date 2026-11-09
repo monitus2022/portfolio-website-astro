@@ -1,94 +1,120 @@
 ---
-import PageLayout from "@/layouts/Base.astro";
 import { Icon } from "astro-icon/components";
-import journeyData from "../content/journey.json";
-
-const fontSize = "text-base";
+import skillsData from "@/content/skills.json";
+import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "My Personal Info",
+	description:
+		"Tommy Cheung is an AI engineer with a data science background and a previous career in audit.",
 	title: "About",
 };
 
-const myStory = "My journey from auditing to software engineering wasn't planned—it was a pivot driven by my love for data's hidden stories, logic's elegant solutions, and applying tech to real-world problems."
+const timeline = [
+	{
+		period: "2024–2025",
+		title: "MSc in Data Science",
+		organization: "University of Colorado Boulder",
+	},
+	{
+		period: "2021–2023",
+		title: "AI Engineer",
+		organization: "Agile Extreme Lab",
+	},
+	{
+		period: "2016–2020",
+		title: "Auditor → Senior Auditor",
+		organization: "Ernst & Young",
+	},
+	{
+		period: "2012–2016",
+		title: "BBA in Professional Accountancy",
+		organization: "The Chinese University of Hong Kong",
+	},
+];
 
+const hobbies = [
+	{ label: "Music & Singing", icon: "mdi:music-clef-treble" },
+	{ label: "Calligraphy", icon: "fluent:calligraphy-pen-20-filled" },
+	{ label: "Coffee Brewing", icon: "mdi:coffee" },
+	{ label: "Gaming", icon: "simple-icons:steam" },
+];
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">About Me</h1>
-	<div class="prose prose-sm prose-cactus max-w-none">
-		<!-- Introduction -->
-		<section class="mb-8">
-			<p class="leading-relaxed">
-				{myStory}
+	<section class="mb-16">
+		<h1 class="mb-6 text-3xl font-bold">About</h1>
+		<div class="max-w-2xl space-y-4 leading-relaxed text-zinc-600 dark:text-zinc-300">
+			<p>
+				I am an AI engineer with a data science background. My path here was not planned: I
+				started in accounting and audit, moved into data science, and then into building AI
+				products.
 			</p>
-		</section>
+			<p>
+				That route taught me to care about the unglamorous parts — clean data, clear
+				measurement, and systems that keep working after the demo. I like turning ambiguous
+				problems into something small enough to test, then iterating until it is genuinely
+				useful.
+			</p>
+		</div>
+	</section>
 
-		<!-- Life Journey -->
-		<section class="mb-8">
-			<h2 class="mb-6 text-2xl font-semibold">Life Journey</h2>
-			<div class="space-y-8">
-				{
-					journeyData.map((phase) => (
-						<div class="border-l-4 border-cactus pl-6">
-							<h3 class="text-xl font-semibold text-cactus mb-2">{phase.phase}</h3>
-							<div class="space-y-4 mb-4">
-								{phase.milestones.map((milestone) => (
-									<div class="flex items-center">
-										<div class="flex w-20 flex-shrink-0 flex-col items-center pr-4">
-											<Icon
-												name="mdi:circle"
-												class="text-cactus h-4 w-4"
-											/>
-											<span class={`text-cactus ${fontSize} font-semibold`}>{milestone.year}</span>
-										</div>
-										<div class="pl-4">
-											<h4 class="text-lg font-medium">{milestone.title}</h4>
-											<p class="text-sm text-gray-600 dark:text-gray-400">{milestone.subtitle}</p>
-										</div>
-									</div>
-								))}
-							</div>
-							<p class={`mb-4 ${fontSize}`}>{phase.description}</p>
-							{phase.skills && phase.skills.length > 0 && (
-								<div class="mb-4">
-									<h4 class="text-lg font-semibold mb-2">Skills Obtained</h4>
-									<ul class={`list-disc list-inside ${fontSize} space-y-1`}>
-										{phase.skills.map((skill) => <li>{skill}</li>)}
-									</ul>
-								</div>
-							)}
-							<div class="mb-4 text-center">
-								<img src={phase.meme} alt="Meme" class="w-full max-w-sm h-auto rounded mx-auto" />
-								<p class="text-sm text-gray-600 dark:text-gray-400 mt-2 italic">{phase.hint}</p>
-							</div>
-						</div>
-					))
-				}
-			</div>
-		</section>
+	<section class="mb-16">
+		<h2 class="mb-6 text-2xl font-semibold">Career snapshot</h2>
+		<ol class="space-y-5 border-l-2 border-accent/40 pl-6">
+			{
+				timeline.map((item) => (
+					<li class="relative">
+						<span class="absolute -left-[1.9rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent" />
+						<p class="text-xs font-semibold text-accent">{item.period}</p>
+						<p class="font-medium">{item.title}</p>
+						<p class="text-sm text-zinc-600 dark:text-zinc-400">{item.organization}</p>
+					</li>
+				))
+			}
+		</ol>
+	</section>
 
-		<!-- Optional: Interests or Call-to-Action -->
-		<section>
-			<h2 class="mb-4 text-2xl font-semibold">Hobbies</h2>
-				<div class="flex flex-wrap gap-2">
-						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-							<Icon name="mdi:music-clef-treble" class="mr-2 h-6 w-6" />
-							Music & Singing
-						</span>
-						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-							<Icon name="fluent:calligraphy-pen-20-filled" class="mr-2 h-6 w-6" />
-							Caligraphy
-						</span>
-						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-							<Icon name="mdi:coffee" class="mr-2 h-6 w-6" />
-							Coffee Brewing
-						</span>
-						<span class="bg-cactus/10 text-cactus inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-							<Icon name="simple-icons:steam" class="mr-2 h-6 w-6" />
-							Gaming
-						</span>
-				</div>						
-		</section>
-	</div>
+	<section class="mb-16">
+		<h2 class="mb-4 text-2xl font-semibold">How I work</h2>
+		<ul class="max-w-2xl list-inside list-disc space-y-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+			<li>Start from the user problem, not the model or the framework.</li>
+			<li>Make the result measurable, then keep the feedback loop short.</li>
+			<li>Build for the whole path: data, evaluation, deployment, and the interface.</li>
+		</ul>
+	</section>
+
+	<section class="mb-16">
+		<h2 class="mb-6 text-2xl font-semibold">Skills</h2>
+		<div class="space-y-5">
+			{
+				skillsData.map((category) => (
+					<div>
+						<h3 class="mb-2 text-sm font-semibold text-accent">{category.title}</h3>
+						<ul class="flex flex-wrap gap-1.5">
+							{category.skills.map((skill) => (
+								<li class="inline-flex items-center rounded bg-zinc-200/70 px-2 py-1 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+									<Icon name={skill.icon} class="mr-1.5 h-4 w-4" />
+									{skill.name}
+								</li>
+							))}
+						</ul>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section>
+		<h2 class="mb-4 text-2xl font-semibold">Outside work</h2>
+		<ul class="flex flex-wrap gap-2">
+			{
+				hobbies.map((hobby) => (
+					<li class="inline-flex items-center rounded-full bg-accent/15 px-3 py-1 text-sm font-medium text-accent-2">
+						<Icon name={hobby.icon} class="mr-2 h-5 w-5" />
+						{hobby.label}
+					</li>
+				))
+			}
+		</ul>
+	</section>
 </PageLayout>

@@ -1,0 +1,133 @@
+---
+import { getCollection, render } from "astro:content";
+import type { GetStaticPaths } from "astro";
+import PageLayout from "@/layouts/Base.astro";
+
+export const getStaticPaths = (async () => {
+	const projects = await getCollection("project");
+	return projects.map((project) => ({
+		params: { slug: project.id },
+		props: { project },
+	}));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+
+const statusLabels = {
+	live: "Live",
+	"in-progress": "In development",
+	archived: "Archived",
+} as const;
+
+const meta = {
+	description: project.data.summary,
+	title: project.data.title,
+};
+
+const externalLinks = [
+	{ href: project.data.demoUrl, label: "Live demo" },
+	{ href: project.data.repoUrl, label: "Repository" },
+	{ href: project.data.docsUrl, label: "API docs" },
+].filter((link): link is { href: string; label: string } => Boolean(link.href));
+---
+
+<PageLayout meta={meta}>
+	<article>
+		<a class="cactus-link mb-8 inline-block text-sm" href="/projects/">← All projects</a>
+
+		<header class="mb-10">
+			<div class="mb-3 flex flex-wrap items-center gap-3">
+				<h1 class="text-3xl font-bold">{project.data.title}</h1>
+				<span
+					class:list={[
+						"rounded-full px-2.5 py-0.5 text-xs font-medium",
+						project.data.status === "live"
+							? "bg-accent/15 text-accent-2"
+							: "bg-zinc-200 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",
+					]}
+				>
+					{statusLabels[project.data.status]}
+				</span>
+			</div>
+			<p class="max-w-2xl leading-relaxed text-zinc-600 dark:text-zinc-300">
+				{project.data.summary}
+			</p>
+		</header>
+
+		<div class="grid gap-10 sm:grid-cols-[1fr_200px]">
+			<div class="prose prose-sm prose-cactus max-w-none">
+				<Content />
+			</div>
+
+			<aside class="h-max rounded-lg border border-zinc-200 p-4 text-sm dark:border-zinc-800">
+				<dl class="space-y-4">
+					<div>
+						<dt class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">Role</dt>
+						<dd class="mt-1">{project.data.role}</dd>
+					</div>
+					{
+						project.data.timeframe && (
+							<div>
+								<dt class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
+									Timeframe
+								</dt>
+								<dd class="mt-1">{project.data.timeframe}</dd>
+							</div>
+						)
+					}
+					{
+						project.data.stack.length > 0 && (
+							<div>
+								<dt class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
+									Stack
+								</dt>
+								<dd class="mt-1 flex flex-wrap gap-1.5">
+									{project.data.stack.map((item) => (
+										<span class="rounded bg-zinc-200/70 px-2 py-0.5 text-xs dark:bg-zinc-800">
+											{item}
+										</span>
+									))}
+								</dd>
+							</div>
+						)
+					}
+					{
+						externalLinks.length > 0 && (
+							<div>
+								<dt class="text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-400">
+									Links
+								</dt>
+								<dd class="mt-1 space-y-1">
+									{externalLinks.map((link) => (
+										<a
+											class="cactus-link block"
+											href={link.href}
+											rel="noreferrer"
+											target="_blank"
+										>
+											{link.label} ↗
+										</a>
+									))}
+								</dd>
+							</div>
+						)
+					}
+				</dl>
+			</aside>
+		</div>
+
+		{
+			project.data.highlights.length > 0 && (
+				<section class="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-800">
+					<h2 class="mb-3 text-xl font-semibold">Highlights</h2>
+					<ul class="list-inside list-disc space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
+						{project.data.highlights.map((highlight) => (
+							<li>{highlight}</li>
+						))}
+					</ul>
+				</section>
+			)
+		}
+	</article>
+</PageLayout>

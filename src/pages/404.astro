@@ -3,11 +3,27 @@ import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
 	description: "Oops! It looks like this page is lost in space!",
-	title: "Oops! You found a missing page!",
+	title: "Page not found",
 };
 ---
 
 <PageLayout meta={meta}>
-	<h1 class="title mb-12">404 | Oops something went wrong</h1>
-	<p class="mb-8">Please use the navigation to find your way back</p>
+	<h1 class="title mb-6">404 | Page not found</h1>
+	<p class="mb-8 text-sm text-zinc-600 dark:text-zinc-300">
+		That page does not exist. Try the home page or the project list instead.
+	</p>
+	<div class="flex flex-wrap gap-3">
+		<a
+			class="inline-flex items-center rounded-md bg-accent px-4 py-2 text-sm font-semibold text-white dark:text-zinc-950 hover:opacity-90"
+			href="/"
+		>
+			Home
+		</a>
+		<a
+			class="inline-flex items-center rounded-md border border-zinc-300 px-4 py-2 text-sm font-semibold hover:border-accent hover:text-accent dark:border-zinc-700"
+			href="/projects/"
+		>
+			Projects
+		</a>
+	</div>
 </PageLayout>
