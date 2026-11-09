@@ -27,6 +27,15 @@ const certifications = [
 	},
 ];
 
+const previousCertifications = [
+	{
+		name: "Microsoft Certified: Azure Data Scientist Associate",
+		code: "DP-100",
+		issuer: "Microsoft",
+		status: "Expired 2026",
+	},
+];
+
 const timeline = [
 	{
 		period: "2024–2025",
@@ -109,6 +118,30 @@ const hobbies = [
 				))
 			}
 		</ul>
+		{
+			previousCertifications.length > 0 && (
+				<div class="mt-6">
+					<h3 class="mb-3 text-sm font-semibold text-accent">Previously held</h3>
+					<ul class="space-y-3">
+						{previousCertifications.map((certification) => (
+							<li class="rounded-lg border border-dashed border-zinc-300 p-4 dark:border-zinc-700">
+								<div class="flex flex-wrap items-baseline justify-between gap-2">
+									<p class="font-medium text-zinc-700 dark:text-zinc-300">
+										{certification.name}
+									</p>
+									<span class="rounded bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
+										{certification.status}
+									</span>
+								</div>
+								<p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+									{certification.issuer} · {certification.code}
+								</p>
+							</li>
+						))}
+					</ul>
+				</div>
+			)
+		}
 		<p class="mt-3 text-xs text-zinc-600 dark:text-zinc-400">
 			Verification details available on request.
 		</p>
