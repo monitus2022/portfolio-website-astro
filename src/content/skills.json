@@ -7,9 +7,19 @@
 			{ "name": "OpenRouter", "icon": "simple-icons:openrouter" },
 			{ "name": "Ollama", "icon": "simple-icons:ollama" },
 			{ "name": "MLflow", "icon": "simple-icons:mlflow" },
+			{ "name": "ChromaDB", "icon": "mdi:database" },
 			{ "name": "PyTorch", "icon": "simple-icons:pytorch" },
 			{ "name": "TensorFlow", "icon": "simple-icons:tensorflow" },
 			{ "name": "scikit-learn", "icon": "simple-icons:scikitlearn" }
+		]
+	},
+	{
+		"title": "AI Agents & Automation",
+		"skills": [
+			{ "name": "OpenCode", "icon": "mdi:console" },
+			{ "name": "Hermes Agent", "icon": "mdi:robot" },
+			{ "name": "n8n", "icon": "simple-icons:n8n" },
+			{ "name": "LangGraph", "icon": "simple-icons:langgraph" }
 		]
 	},
 	{
@@ -17,7 +27,6 @@
 		"skills": [
 			{ "name": "Pandas", "icon": "simple-icons:pandas" },
 			{ "name": "Plotly", "icon": "simple-icons:plotly" },
-			{ "name": "RStudio", "icon": "simple-icons:rstudioide" },
 			{ "name": "Power BI", "icon": "simple-icons:powerbi" }
 		]
 	},
@@ -46,7 +55,6 @@
 		"skills": [
 			{ "name": "Github Actions", "icon": "simple-icons:githubactions" },
 			{ "name": "Docker", "icon": "simple-icons:docker" },
-			{ "name": "Kubernetes", "icon": "simple-icons:kubernetes" },
 			{ "name": "Terraform", "icon": "simple-icons:terraform" },
 			{ "name": "AWS", "icon": "simple-icons:amazonwebservices" },
 			{ "name": "Azure", "icon": "simple-icons:microsoftazure" },

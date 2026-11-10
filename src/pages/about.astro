@@ -60,7 +60,6 @@ const timeline = [
 ];
 
 const hobbies = [
-	{ label: "Music & Singing", icon: "mdi:music-clef-treble" },
 	{ label: "Calligraphy", icon: "fluent:calligraphy-pen-20-filled" },
 	{ label: "Coffee Brewing", icon: "mdi:coffee" },
 	{ label: "Gaming", icon: "simple-icons:steam" },
@@ -130,11 +129,11 @@ const hobbies = [
 										{certification.name}
 									</p>
 									<span class="rounded bg-zinc-200 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-										{certification.status}
+										{certification.code}
 									</span>
 								</div>
 								<p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-									{certification.issuer} · {certification.code}
+									{certification.issuer} · {certification.status}
 								</p>
 							</li>
 						))}

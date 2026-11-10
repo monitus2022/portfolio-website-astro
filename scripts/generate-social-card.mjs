@@ -7,9 +7,7 @@ const svg = `
 
 	<g transform="translate(88 78) scale(1.15)">
 		<rect width="64" height="64" rx="14" fill="#1e293b" />
-		<rect x="11" y="18" width="17" height="5" rx="2.5" fill="#fb7185" />
-		<rect x="17" y="23" width="5" height="24" rx="2.5" fill="#fb7185" />
-		<path d="M51 22.5a12.5 12.5 0 1 0 0 19" fill="none" stroke="#f8fafc" stroke-linecap="round" stroke-width="5" />
+		<path d="M38 6 17 36h12l-4 22 22-31H35l3-21Z" fill="#fb7185" />
 	</g>
 
 	<text x="88" y="252" fill="#f8fafc" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="84" font-weight="700">Tommy Cheung</text>

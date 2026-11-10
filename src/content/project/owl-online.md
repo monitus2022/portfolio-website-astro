@@ -13,8 +13,8 @@ stack:
 highlights:
   - "Answers are grounded in the supplied books instead of open-web content."
   - "Every response cites its sources so readers can verify the answer."
-  - "Live demo and OpenAPI documentation are publicly available."
-demoUrl: "https://api.monitus.org/"
+  - "Live site and OpenAPI documentation are publicly available."
+demoUrl: "https://owl.monitus.org/"
 docsUrl: "https://api.monitus.org/docs"
 ---
 
