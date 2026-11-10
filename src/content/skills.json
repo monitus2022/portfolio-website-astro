@@ -13,6 +13,14 @@
 		]
 	},
 	{
+		"title": "AI Agents & Automation",
+		"skills": [
+			{ "name": "OpenCode", "icon": "mdi:console" },
+			{ "name": "Hermes Agent", "icon": "mdi:robot" },
+			{ "name": "n8n", "icon": "simple-icons:n8n" }
+		]
+	},
+	{
 		"title": "Data Analytics",
 		"skills": [
 			{ "name": "Pandas", "icon": "simple-icons:pandas" },
