@@ -11,10 +11,9 @@ safe to share publicly, and the detailed CV is sent on request.
 - `/projects/` — project index and case studies
 - `/about/` — short bio, career snapshot, and skills
 - `/contact/` — LinkedIn, GitHub, and a revealed email address
-- `/notes/` — reading notes (secondary destination)
 
 The `notes.monitus.org` and `code.monitus.org` sites are separate MkDocs deployments linked from
-the footer and the home page.
+the footer and the home page. The old `/notes/*` routes redirect to `https://notes.monitus.org/`.
 
 ## Commands
 
@@ -32,7 +31,6 @@ the footer and the home page.
 
 - Profile copy lives in `src/pages/`.
 - Project case studies live in `src/content/project/`.
-- Reading notes live in `src/content/note/`.
 - Site metadata and navigation live in `src/site.config.ts`.
 
 To add a project, create a Markdown file in `src/content/project/` with the frontmatter fields

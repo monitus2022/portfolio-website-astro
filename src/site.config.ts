@@ -4,15 +4,6 @@ import type { SiteConfig } from "@/types";
 export const siteConfig: SiteConfig = {
 	// Used as both a meta property (src/components/BaseHead.astro) & the webmanifest name.
 	author: "Tommy Cheung",
-	// Date.prototype.toLocaleDateString() parameters, found in src/utils/date.ts.
-	date: {
-		locale: "en-GB",
-		options: {
-			day: "numeric",
-			month: "short",
-			year: "numeric",
-		},
-	},
 	// Used as the default description meta property and webmanifest description.
 	description:
 		"AI Engineer with a data science background, building practical LLM, ML, and MLOps systems. Open to AI/ML engineering roles.",
@@ -22,7 +13,7 @@ export const siteConfig: SiteConfig = {
 	ogLocale: "en_GB",
 	// Used for the meta title, webmanifest name, header wordmark, and footer.
 	title: "Tommy Cheung",
-	// Used to build canonical URLs, sitemap entries, and RSS links.
+	// Used to build canonical URLs and sitemap entries.
 	url: "https://monitus.org",
 };
 
@@ -49,10 +40,6 @@ export const menuLinks: { path: string; title: string }[] = [
 // Secondary destinations. These are intentionally kept out of the primary nav so
 // the site stays focused on the public profile.
 export const resourceLinks: { path: string; title: string; external?: boolean }[] = [
-	{
-		path: "/notes/",
-		title: "Reading Notes",
-	},
 	{
 		path: "https://notes.monitus.org",
 		title: "Study Notes",

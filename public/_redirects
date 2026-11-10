@@ -1,0 +1,3 @@
+# Reading notes moved to the standalone notes site.
+/notes https://notes.monitus.org/ 301
+/notes/* https://notes.monitus.org/ 301
